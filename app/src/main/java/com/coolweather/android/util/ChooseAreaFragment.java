@@ -121,12 +121,10 @@ public class ChooseAreaFragment extends Fragment {
         titleText.setText("中国");
         backButton.setVisibility(listView.GONE);
         provinceList = DataSupport.findAll(Province.class);
-        //这里每次数据库都没有清空，明天看一下如何清空数据库
         if (provinceList.size()>0){
             dataList.clear();
             for (Province province : provinceList){
                 dataList.add(province.getProvinceName());
-                //Log.d("ChooseAreaFragment", "queryProvinces = "+province.getProvinceName());
             }
             adapter.notifyDataSetChanged();
             listView.setSelection(0);
@@ -155,7 +153,7 @@ public class ChooseAreaFragment extends Fragment {
             currentLevel = LEVEL_CITY;
         }else {
             int provinceCode = selectedProvince.getProvinceCode();
-            String address = "http://guolin/tech/api/china/"+provinceCode;
+            String address = "http://guolin.tech/api/china/"+provinceCode;
             queryFromServer(address,"city");
         }
     }
